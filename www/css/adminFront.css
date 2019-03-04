@@ -1,0 +1,125 @@
+.container {
+  		display: grid;
+    width: 100vw;
+    height: 100vh;
+  		grid-template-columns: 250px 1fr 1fr 400px;
+  		grid-template-rows: 15% auto 15%;
+  		grid-gap: 10px;
+  		grid-template-areas:
+   			"home title title user"
+    		"teacherRequests search stats adminlist"
+	 }
+	 .home {
+	 	border: 1px solid black;
+	 	grid-area: home;
+	 	grid-column-start: 1
+	 	grid-column-end: 2;
+	 	grid-row-start: row1-start
+	 	grid-row-end: row1-end;
+	 	padding-left: 5px;
+	 padding-top: 20px;
+	 }
+	 .user {
+	 	border: 1px solid black;
+	 	grid-area: user;
+	 	grid-column-start: 4
+	 	grid-column-end: end;
+	 	grid-row-start: row1-start
+	 	grid-row-end: row1-end;
+	 	padding-left: 5px;
+	  padding-top: 20px;
+	 }
+	 .title {
+    text-align: center;
+	 	border: 1px solid black;
+	 	grid-area: title;
+	 	grid-column-start: 2;
+	 	grid-column-end: 4;
+	 	grid-row-start: row1-start
+	 	grid-row-end: row1-end;
+
+	 }
+	 .teacherRequests {
+    overflow-y: auto;
+	 	border: 1px solid black;
+	 	grid-area: teacherRequests;
+	 	grid-column-start: 1;
+	 	grid-column-end: 2;
+	 	grid-row-start: 2;
+	 	grid-row-end: last-line;
+	 }
+	 .search {
+	 	border: 1px solid black;
+	 	grid-area: search;
+	 	grid-column-start: 2;
+	 	grid-column-end: 3;
+	 	grid-row-start: 2;
+	 	grid-row-end: last-line;
+	 }
+	 .stats {
+	 	border: 1px solid black;
+	 	grid-area: stats;
+	 	grid-column-start: 3;
+	 	grid-column-end: 4;
+	 	grid-row-start: 2;
+	 	grid-row-end: last-line;
+
+	 }
+	 .adminlist {
+    overflow-y: auto;
+	 	border: 1px solid black;
+	 	grid-area: adminlist;
+	 	grid-column-start: 4;
+	 	grid-column-end: end;
+	 	grid-row-start: 2;
+	 	grid-row-end: last-line;
+	 }
+
+.list-group {
+  display: inline-block;
+}
+.list-group-item {
+  border: 1px solid gray;
+}
+#accept_icon {
+		height: 20px;
+		width: 20px;
+		border-radius: 50%;
+		background: none;
+}
+#accept_icon:hover {
+		height: 20px;
+		width: 20px;
+		border-radius: 50%;
+		background: #d9d9d9;
+}
+#searchbar {
+	padding-top: 5px;
+	width: 75%;
+	display:inline-block
+}
+#searchbar {
+	display:inline-block
+}
+.accept {
+	background:url(views/img/accept.png) no-repeat;
+	display:inline-block
+
+}
+.reject {
+	background:url(views/img/reject.png) no-repeat;
+	display:inline-block
+
+}
+#error {
+	font-size: 24px;
+	color: red;
+}
+
+.home img {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    height: 100px;
+
+}

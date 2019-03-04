@@ -1,0 +1,444 @@
+@media (max-width: 1000px) {
+.container {
+      border: 1px dashed black;
+          display: grid;
+        width: 100vw;
+        height: 100vh;
+          grid-template-columns: 100px 1fr 100px;
+          grid-template-rows: 5% auto auto auto auto;
+          grid-gap: 5px;
+          grid-template-areas:
+            "home search user"
+            "videoview videoview videoview"
+            "videoinfo videoinfo videoinfo"
+            "other_videos other_videos other_videos"
+            "comments comments comments"
+       }
+       .home {
+        display: none;
+        border: 1px dashed black;
+        grid-area: home;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: row1-start
+        grid-row-end: row1-end;
+        padding-left: 5px;
+        padding-top: 20px;
+       }
+       .search {
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: search;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: row1-start
+        grid-row-end: row1-end;
+        text-align: center;
+        position: relative;
+
+       }
+        .search .searchbar {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        margin-bottom: 10px;
+        }
+        .search p {
+        color: red;
+        }
+        .search button {
+        display: inline-block;
+        position: absolute;
+
+
+        }
+        .search input {
+        width: 50%;
+        display: inline-block;
+
+        }
+       .user {
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: user;
+        grid-column-start: 4
+        grid-column-end: end;
+        grid-row-start: row1-start
+        grid-row-end: row1-end;
+        padding-left: 5px;
+      padding-top: 20px;
+       }
+
+       .videoview{
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: videoview;
+        grid-column-start: 1;
+        grid-column-end: end;
+        grid-row-start: 2;
+        grid-row-end: auto;
+       }
+       .videoinfo {
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: videoinfo;
+        grid-column-start: 1;
+        grid-column-end: end;
+        grid-row-start: 3;
+        grid-row-end: auto;
+       }
+       .videoinfo h4 {
+        text-align: center;
+       }
+
+       .other_videos{
+        grid-area: other_videos;
+        grid-column-start: 1;
+        grid-column-end: end;
+        grid-row-start: 4;
+        grid-row-end: auto;
+        text-align: center;
+       }
+       .other_videos p {
+        font-size: 20px;
+       }
+       .comments{
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: comments;
+        grid-column-start: 1;
+        grid-column-end: end;
+        grid-row-start: 5;
+        grid-row-end: auto;
+        
+       }
+      }
+@media (min-width: 1100px) {
+.container {
+      background-color: #f2f2f2;
+      overflow-y: auto;
+      display: grid;
+      width: 100vw;
+      height: 100vh;
+      grid-template-columns: 150px 1fr 200px;
+      grid-template-rows: 15% 75% auto;
+      grid-gap: 5px;
+      grid-template-areas:
+        "home search user"
+        "videoinfo videoview other_videos"
+        "videoinfo comments other_videos"
+       }
+       .home {
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: home;
+        grid-column-start: 1
+        grid-column-end: 2;
+        grid-row-start: row1-start
+        grid-row-end: row1-end;
+        padding-left: 5px;
+
+       }
+       .search {
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: search;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: row1-start
+        grid-row-end: row1-end;
+        text-align: center;
+        position: relative;
+
+       }
+        .search .searchbar {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        margin-bottom: 10px;
+        }
+        .search p {
+        color: red;
+        }
+        .search button {
+        display: inline-block;
+        position: absolute;
+
+
+        }
+        .search input {
+        width: 50%;
+        display: inline-block;
+
+        }
+       .user {
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: user;
+        grid-column-start: 4
+        grid-column-end: end;
+        grid-row-start: row1-start
+        grid-row-end: row1-end;
+        padding-left: 5px;
+       padding-top: 20px;
+       }
+
+       .videoview{
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: videoview;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: auto;
+       }
+       .videoview video {
+        display: block;
+        margin: 0 auto;
+       }
+       .videoview h3 {
+        text-align: center;
+       }
+       .videoinfo {
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: videoinfo;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: last-line;
+        margin-left: 10px;
+
+       }
+
+       .other_videos{
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: other_videos;
+        grid-column-start: 3;
+        grid-column-end: end;
+        grid-row-start: 2;
+        grid-row-end: last-line;
+        overflow-y: auto;
+       }
+       .comments{
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: comments;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: auto;
+        grid-row-end: last-line;
+       }
+      }
+
+@media (min-width: 1500px) {
+.container {
+      background-color: #f2f2f2;
+      display: grid;
+		  width: 100vw;
+		  height: 100vh;
+  		grid-template-columns: 250px 1fr 400px;
+  		grid-template-rows: 15% 65% auto;
+  		grid-gap: 5px;
+  		grid-template-areas:
+   			"home search user"
+    		"videoinfo videoview other_videos"
+    		"videoinfo comments other_videos"
+  		 }
+  		 .home {
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: home;
+  		 	grid-column-start: 1
+  		 	grid-column-end: 2;
+  		 	grid-row-start: row1-start
+  		 	grid-row-end: row1-end;
+  		 	padding-left: 5px;
+			padding-top: 20px;
+  		 }
+  		 .search {
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+  		 	grid-area: search;
+  		 	grid-column-start: 2;
+  		 	grid-column-end: 3;
+  		 	grid-row-start: row1-start
+  		 	grid-row-end: row1-end;
+        text-align: center;
+        position: relative;
+
+  		 }
+        .search .searchbar {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        margin-bottom: 10px;
+        }
+        .search p {
+        color: red;
+        }
+        .search button {
+        display: inline-block;
+        position: absolute;
+
+
+        }
+        .search input {
+        width: 50%;
+        display: inline-block;
+
+        }
+  		 .user {
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+  		 	grid-area: user;
+  		 	grid-column-start: 4
+  		 	grid-column-end: end;
+  		 	grid-row-start: row1-start
+  		 	grid-row-end: row1-end;
+  		 	padding-left: 5px;
+			 padding-top: 20px;
+  		 }
+
+  		 .videoview{
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+  		 	grid-area: videoview;
+  		 	grid-column-start: 2;
+  		 	grid-column-end: 3;
+  		 	grid-row-start: 2;
+  		 	grid-row-end: auto;
+  		 }
+       .videoview video {
+        display: block;
+        margin: 0 auto;
+       }
+       .videoview h3 {
+        text-align: center;
+       }
+       .videoinfo {
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+        grid-area: videoinfo;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: last-line;
+        margin-left: 10px;
+
+       }
+
+  		 .other_videos{
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+  		 	grid-area: other_videos;
+  		 	grid-column-start: 3;
+  		 	grid-column-end: end;
+  		 	grid-row-start: 2;
+  		 	grid-row-end: last-line;
+        overflow-y: auto;
+  		 }
+  		 .comments{
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: white;
+  		 	grid-area: comments;
+  		 	grid-column-start: 2;
+  		 	grid-column-end: 3;
+  		 	grid-row-start: auto;
+  		 	grid-row-end: last-line;
+        overflow-y: auto;
+  		 }
+      }
+		.list-group {
+		  display: inline-block;
+		}
+		.list-group-item {
+		  border: 1px solid gray;
+		}
+		#accept_icon {
+    		height: 20px;
+    		width: 20px;
+    		border-radius: 50%;
+    		background: none;
+		}
+		#accept_icon:hover {
+    		height: 20px;
+    		width: 20px;
+    		border-radius: 50%;
+    		background: #d9d9d9;
+		}
+
+		#video {
+		    width: auto;
+		    height: auto;
+		}
+    .comment {
+      padding-left: 20px;
+    }
+
+
+    .rating span input {
+        position:absolute;
+        top:15px;
+        left:-1px;
+        height: 20px;
+        width: 20px;
+        opacity:0;
+    }
+    .rating {
+      unicode-bidi: bidi-override;
+      direction: rtl;
+      float: left;
+    }
+    .rating > span {
+      font-size: 40px;
+      display: inline-block;
+      position: relative;
+      width: 0.6em;
+      color: #E0E0E0;
+
+    }
+    .rating > span:hover:before,
+    .rating > span:hover ~ span:before {
+       content: "\2605";
+       position: absolute;
+       color: yellow;
+    }
+
+    #filled-star {
+      font-size: 20px;
+      color: yellow;
+    }
+    #empty-star {
+      font-size: 20px;
+      color: #E0E0E0;
+    }
+    .home img {
+      margin-left: 10px;
+      width: 100px;
+      height: 100px;
+
+  }

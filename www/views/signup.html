@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <style>
+        .col-sm-4 {
+            padding-top: 150px;
+            margin: auto;
+        }
+
+        .header img {
+            float: left;
+            width: 100px;
+            height: 100px;
+
+        }
+
+        .header h1 {
+            position: relative;
+            top: 18px;
+            left: 10px;
+        }
+        #errormessage {
+            color: red;
+        }
+
+}
+    </style>
+
+</head>
+<body>
+
+<div class="row">
+
+    <aside class="col-sm-4">
+<div class="card">
+    <div class="header">
+        <img src="views/img/unitube.png" alt="logo" />
+        <h1>UniTube</h1>
+    </div>
+<article class="card-body">
+<h4 class="card-title mb-4 mt-1">Sign up</h4>
+    {% if error %}
+        <p id="errormessage">{{ error.errorMessage }}</p>
+    {% endif %}
+     <form action="signup.php" method="post" id="signup">
+        <div class="form-group">
+            <label>Enter name</label>
+            <input name="name" class="form-control" placeholder="John Smith" type="text" required>
+        </div> <!-- form-group// -->
+
+        <div class="form-group">
+            <label>Enter email</label>
+            <input name="mail" class="form-control" placeholder="email@example.com" type="email" required>
+        </div> <!-- form-group// -->
+        <div class="form-group">
+            <label>Enter password</label>
+            <input name="password" id="pass1"class="form-control" placeholder="******" type="password"required>
+        </div> <!-- form-group// --> 
+            <div class="form-group">
+            <label>Re-type password</label>
+            <input id="pass2" class="form-control" placeholder="******" type="password" required>
+        </div> <!-- form-group// --> 
+        <div class="form-group"> 
+        <div class="checkbox">
+            <label> <input name="teacher" type="checkbox"> I am a teacher </label>
+        </div> <!-- checkbox .// -->
+    </div> <!-- form-group// -->  
+    <div class="form-group">
+    <script src="js/confirmpassword.js"></script>
+        <button name="signup" type="submit" class="btn btn-primary btn-block"> Sign up  </button>
+        <a href="index.php">Already signed up ?</a>
+    </div> <!-- form-group// -->                                                           
+</form>
+</article>
+</div> <!-- card.// -->
+</div>
+    </aside> <!-- col.// -->
+    <aside class="col-sm-4">
+</body>
+</html>

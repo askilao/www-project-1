@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/studentFront.css" />
+    <title>Student Page</title>
+</head>
+<body>
+<div class="container">
+    <div class="title">
+        <h1>Student Main Page</h1>
+
+    </div>
+    <div class="user">
+        <p>{{ data.firstname }}</p>
+        <p>{{ data.mail }}</p>
+        <form id="logout" method="POST" action="index.php">
+            <input type="hidden" name="logout" value="1"><!-- Must have a field other than the button for Mink -->
+            <input id="signout" type="submit" value="Sign Out">
+        </form>
+    </div>
+
+
+    <div class="navsidebar">
+        <h4>Nav: </h4>
+        <p><a href="">Browse Videos</a></p>
+        {% if data.isAdmin %}
+        <p><a href="admin.php">Admin Page</a></p>
+        {% endif %}
+    </div>
+    <div class="allvideos">
+        <h4>All Videos: </h4>
+        <div class="img-grid">
+            {% for video in videos %}
+            <div class="video">
+                <p>{{ video.title }}</p>
+                <a href="showVideo.php?id={{video.video_id}}">
+                    <img src="getThumbnail.php?id={{video.video_id}}"></a>
+                <p>{{ video.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="home">
+        <a href="index.php">
+            <img src="views/img/unitube.png" alt="logo"></a>
+    </div>
+</div>
+</body>
+</html>
+
+</html>

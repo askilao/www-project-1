@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/showVideo.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<title>Video Page</title>
+</head>
+<body>
+	<div class="container">
+		<div class="user">		
+			<p>{{ userdata.firstname }}</p>
+			<p>{{ userdata.mail }}</p>
+			<form id="logout" method="POST" action="index.php">
+		  		<input type="hidden" name="logout" value="1"><!-- Must have a field other than the button for Mink -->
+		 		<input id="signout" type="submit" value="Sign Out">
+			</form>
+		</div>
+		<div class="search">
+			<form action="search.php" method="GET" class="searchbar">		
+				<input class="form-control form-control-lg form-control-borderless" name="q" id="searchbar" type="search" placeholder="Search videos">
+				<button class="btn btn-md btn-primary" id="searchbtn" type="submit">Search</button>
+			</form>
+		</div>
+		<div class="videoview">
+			<h3>{{ videoInfo.title }}</h3>
+			 <video id="video" controls width="420" height="240">
+			  <source src="{{videoInfo.path}}" type="video/webm">
+			Your browser does not support the video tag.
+			</video> <br>
+			<input type="hidden" id="video_id" name="video_id" value="{{videoInfo.video_id}}">
+			<script src="js/rating.js"></script>
+			{% if userdata.hasRated == false %}
+				Give Rating: <br>
+				<div class="rating">
+				    <span>★<input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
+				    <span>★<input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
+				    <span>★<input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
+				    <span>★<input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
+				    <span>★<input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
+				</div>
+			{%endif%}
+			
+		</div>
+		<div class="videoinfo">
+			<h4>Video Info</h4>
+			<b>Creator:</b> {{ teacher.firstname }}<br>
+			<b>Subject:</b> {{ videoInfo.emne }} <br>
+			{% if playlistInfo !=null %}
+				<b>Playlist: </b>{{ playlistInfo.playlist_title }} <br>
+			{% endif %}
+			<b>Rating Total:</b>
+			<div class="showRating">	 
+				 	<span id="{{ ratings.1 }}">★</span>
+				 	<span id="{{ ratings.2 }}">★</span>
+				 	<span id="{{ ratings.3 }}">★</span>
+				 	<span id="{{ ratings.4 }}">★</span>
+				 	<span id="{{ ratings.5 }}">★</span>			 
+			</div class="showRating">
+
+			 <b>Description:</b> <br>
+			 {{ videoInfo.description }} <br>
+			 <a href="search.php?q={{teacher.firstname}}">All videos from {{ teacher.firstname }}</a>
+
+
+		</div>
+		<div class="other_videos">
+			{% if playlistInfo !=null %}
+			<h4>Videos from <i>{{ playlistInfo.playlist_title }}</i></h4>
+			{% else %}
+			<h4>Other Videos</h4>
+			{% endif %}
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col"></th>
+			      <th scope="col"></th>
+			    </tr>
+			  </thead>
+			  {% for otherVideo in otherVideos %}
+			  <tbody>
+			    <tr align="left">
+			      <td><a href="showVideo.php?id={{otherVideo.video_id}}">
+					<img src="getThumbnail.php?id={{otherVideo.video_id}}"></a></td>
+			      <td><p>{{ otherVideo.title }}</p></td>
+			    </tr>
+			  </tbody>
+			  {% endfor %}
+			</table>
+		</div>
+		<div class="comments">
+			<h4>Post Comment</h4>
+			<form method="POST" action="comment.php">
+				<input type="hidden" name="video_id" value="{{videoInfo.video_id}}">
+				<textarea rows ="5" cols ="30" name="commentContent"></textarea></br>
+				<input type = "submit" value = "post!"></br>
+			</form>
+				<div class="comment">
+				<h4>Comments</h4>
+				  	{% for comment in comments %}			   
+				      <b>{{ comment.mail }} </b>  {{ comment.time }} <br>
+				      {{ comment.comment }}	<br>	    
+				    {% endfor %}
+				</div>
+
+						
+
+		</div>
+	    <div class="home">
+	      <a href="index.php">
+	      <img src="views/img/unitube.png" alt="logo"></a>
+	    </div>
+	</body>
+</html>

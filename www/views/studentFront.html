@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/studentFront.css" />
+	<title>Student Page</title>
+</head>
+<body>
+<div class="container">
+	<div class="title">
+		<h1>Student Main Page</h1>
+		{{ error.message }}
+	</div>
+	<div class="user">
+		<p>{{ data.firstname }}</p>
+		<p>{{ data.mail }}</p>
+		<form id="logout" method="POST" action="index.php">
+			<input type="hidden" name="logout" value="1"><!-- Must have a field other than the button for Mink -->
+			<input id="signout" type="submit" value="Sign Out">
+		</form>
+		<form action="/deleteUser.php" method="get">
+			<button type="submit" value="Submit">Delete Account</button>
+		</form>
+	</div>
+
+
+	<div class="navsidebar">
+		<h4>Nav: </h4>
+		<p><a href="search.php?q=">Browse Videos</a></p>
+		{% if data.isAdmin %}
+			<p><a href="admin.php">Admin Page</a></p>
+		{% endif %}
+	</div>
+
+	<div class="playlist">
+		<h3>My Subscriptions: </h3>
+		{% for subscribed_playlist in subscribed_playlists %}
+			<h4>{{ subscribed_playlist.playlist_title }}</h4>
+				<form action="student.php" method="POST"> <input type="hidden" name="playlist_id" value="{{subscribed_playlist.playlist_id}}"> <input id="unsub" class="btn btn-danger" name="unsub" type="submit" value="Unsub"></form>
+	            <form action="showVideo.php" method="GET"> <input type="hidden" name="playlist_id" value="{{subscribed_playlist.playlist_id}}"><input id="view" class="btn btn-secondary" type="submit" value="View"></form>
+			<div class="description">
+				<p>{{ subscribed_playlist.description }} </p>
+			</div>	
+			<div class="img-grid">
+				{% for video in subscribed_playlist.videos %}
+					<div class="video">
+						<p>{{video.title}}</p>
+						<p>{{video.description}}</p>			
+						<a href="showVideo.php?id={{video.video_id}}">
+							<img src="getThumbnail.php?id={{video.video_id}}"></a>
+					</div>
+				{% endfor %}
+			</div>
+
+		{% endfor %}
+	</div>
+
+
+	<div class="home">
+		<a href="index.php">
+		<img src="views/img/unitube.png" alt="logo"></a>
+	</div>
+</div>
+</body>
+</html>
+
+</html>

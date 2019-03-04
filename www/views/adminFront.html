@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/adminFront.css" />
+	<title>Admin Page</title>
+</head>
+<!-- Page is divided with css grids -->
+<body>
+	<div class="container">
+		<div class="title">		
+			<h1>Admin Main Page</h1>
+			<p id="error">{{ error.message }}</p>
+		</div>
+		<div class="user">		
+			<p>{{ data.firstname }}</p>
+			<p>{{ data.mail }}</p>
+			<form id="logout" method="POST" action="index.php">
+		  		<input type="hidden" name="logout" value="1">
+		 		<input id="signout" type="submit" value="Sign Out">
+			</form>
+		</div>
+
+		<div class="teacherRequests">
+			<form id="approve" method="POST" action="admin.php">
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">Teacher Requests: </th>
+				      <th scope="col"></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	{% for request in requests %}
+				    <tr>
+				      <th scope="row" id="teacherrow">{{ request.mail }}</th>
+				      <td><input type="checkbox" name="teacherCheck[]" value="{{request.id}}"></td>
+				    </tr>
+				    {% endfor %}
+				  </tbody>
+				</table>
+				<button type="submit" class="btn btn-success btn-xs" name="accept">Accept</button>
+				<button type="submit" id="removeadmin" class="btn btn-danger btn-xs" name="reject">Reject</button>
+			</form>
+		</div>
+		<div class="search">
+			<form action="admin.php" method="POST">
+				<input class="form-control form-control-lg form-control-borderless" name="searchUser" id="searchbar" type="search" placeholder="Search users">
+				<button class="btn btn-md btn-success" id="searchbtn" name="searchBtn" type="submit">Search</button>
+			</form>
+			<form id="searchuser" method="POST" action="admin.php">
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">Name</th>
+				      <th scope="col">Mail</th>
+				      <th scope="col">Role</th>
+				      <th scope="col"></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	<!-- Search matches -->
+				  	{% for searchMatch in searchMatchs %}
+				  		{% if searchMatch.isAdmin == false %}
+						    <tr>
+						      <th scope="row">{{searchMatch.firstname}}</th>
+						      <th scope="row">{{searchMatch.mail}}</th>
+						      <th scope="row">{{searchMatch.role_name}}</th>
+						       <td><button type="submit" id="removeadmin" class="btn btn-success btn-xs" name="promote" value="{{searchMatch.id}}">Promote</button></td>				   
+						    </tr>
+						{% endif %}
+				    {% endfor %}
+				  </tbody>
+				</table>
+			</form>
+		</div>
+		<div class="stats">
+			<!-- Some site stats (number of user, total videos etc) enables if time provides -->
+			<h3>Site stats:</h3>
+			<i>Nothing to see her just yet, maybe some day..</i>
+		</div>
+		<div class="adminlist">
+			<form id="adminList" method="POST" action="admin.php">
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">Name</th>
+				      <th scope="col">Mail</th>
+				      <th scope="col">Role</th>
+				      <th scope="col"></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	{% for admin in admins %}
+				    <tr>
+				      <th scope="row">{{admin.firstname}}</th>
+				      <th scope="row">{{admin.mail}}</th>
+				      <th scope="row">{{admin.role_name}}</th>   
+				      <td><button type="submit" id="removeadmin" class="btn btn-danger btn-xs" name="remove" value="{{admin.id}}">Remove</button></td>
+				    </tr>
+				    {% endfor %}
+				  </tbody>
+				</table>
+			</form>
+		</div>
+
+    <div class="home">
+      <a href="index.php">
+      <img src="views/img/unitube.png" alt="logo"></a>
+    </div>
+	</body>
+</html>

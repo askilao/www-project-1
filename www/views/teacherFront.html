@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta charset="UTF-8">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/teacherFront.css" />
+	<title>Teacher Page</title>
+	
+</head>
+<body>
+	<div class="container">
+		<div class="title">		
+			<h1>Teacher Main Page</h1>
+      {{ message }}
+		</div>
+		<div class="user">		
+			<p>{{ data.firstname }}</p>
+			<p>{{ data.mail }}</p>
+        <form id="logout" method="POST" action="index.php">
+          <input type="hidden" name="logout" value="1"><!-- Must have a field other than the button for Mink -->
+          <input id="signout" type="submit" value="Sign Out">
+        </form>
+            <form action="/deleteUser.php" method="get">
+                <button type="submit" value="Submit">Delete Account</button>
+            </form>
+        </div>
+
+		<div class="navsidebar">
+			<h4>Nav: </h4>
+      <button class="btn btn-primary" onclick="openUploadForm()">Upload Video</button>
+      <form action="search.php?q="> <input class="btn btn-primary" type="submit" value="Browse Videos"></form>
+      {% if data.isAdmin %}
+        <form action="admin.php"> <input class="btn btn-danger" type="submit" value="Admin Page"></form>
+      {% endif %}
+      <button class="btn btn-primary" onclick="openPlaylistForm()">Create Playlist</button>
+
+		</div>
+		<div class="myvideos">
+			<h4>My Videos: </h4>
+      <div class="img-grid">
+          {% for video in videos %}
+            <div class="video">
+                 <input type="hidden" id="{{video.video_id}}title" value="{{video.title}}">
+                 <input type="hidden" id="{{video.video_id}}descr" value="{{video.description}}">
+                 <input type="hidden" id="{{video.video_id}}subject" value="{{video.emne}}">
+                 <input type="hidden" id="{{video.video_id}}" value="{{video.video_id}}">
+                 <p> <b>{{ video.title }}</b> 
+                  <div class="dropdown">
+                    <span>Options</span>
+                    <div class="dropdown-content">
+                      </p><button class="btn btn-primary btn-xs" onclick="openEditForm(
+                                    document.getElementById('{{video.video_id}}title').value, 
+                                    document.getElementById('{{video.video_id}}descr').value, 
+                                    document.getElementById('{{video.video_id}}subject').value,
+                                    document.getElementById('{{video.video_id}}').value)">Edit</button>
+                          <form action="teacher.php" method="POST">
+                            <input type="hidden" name="delete_video_id" value="{{video.video_id}}"> 
+                            <input id="deleteVideo" class="btn btn-danger btn-xs" type="submit" name="deleteVideo" value="Delete">
+                          </form>
+                      </div>
+                  </div>
+                 <a href="showVideo.php?id={{video.video_id}}">
+                 <img src="getThumbnail.php?id={{video.video_id}}"></a>
+                  <p>{{ video.description }}</p>  
+            </div>
+          {% endfor %}
+      </div>
+		</div>
+    <div class="playlist">
+      
+      <div class=my_playlists>
+        <h4>My Playlists: </h4>
+        <table class="table table-hover">
+          <thead>    
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Description</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          {% for playlist in playlists %}
+          <tbody>
+            <tr  data-href='showVideo.php?playlist_id={{playlist.playlist_id}}'>
+                 <input type="hidden" id="{{playlist.playlist_title}}title" value="{{playlist.playlist_title}}">
+                 <input type="hidden" id="{{playlist.description}}descr" value="{{playlist.description}}">
+                 <input type="hidden" id="{{playlist.playlist_id}}" value="{{playlist.playlist_id}}">
+                 <input type="hidden" id="{{playlist.playlist_id}}playlists" value="{{playlists}}">
+              <td class="clickable-row" data-href='showVideo.php?playlist_id={{playlist.playlist_id}}'><p>{{ playlist.playlist_title }}</p></td>
+              <td class="clickable-row" data-href='showVideo.php?playlist_id={{playlist.playlist_id}}'><p>{{ playlist.description }}</p></td>
+              <td><form action="playlist.php" method="POST"> 
+                    <input type="hidden" name="delete_playlist_id" value="{{playlist.playlist_id}}"> 
+                    <input class="btn btn-danger btn-xs" type="submit" name="deletePlaylist" value="Delete">
+                  </form></td>
+              <td><button id="playlistEdit" class="btn btn-primary btn-xs" onclick="openPlaylistEditForm(
+                                          document.getElementById('{{playlist.playlist_title}}title').value, 
+                                          document.getElementById('{{playlist.description}}descr').value, 
+                                          document.getElementById('{{playlist.playlist_id}}playlists').value,
+                                          document.getElementById('{{playlist.playlist_id}}').value)">Edit</button></td>
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+        </div>
+        <div class=subscribed_playlists>
+          <h4>Subscribed Playlists: </h4>
+        <table class="table table-hover">
+          <thead>    
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Description</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          {% for subscribed_playlist in subscribed_playlists %}
+          <tbody>
+            <form action="teacher.php" method="POST">
+              <tr class="clickable-row" data-href='showVideo.php?playlist_id={{subscribed_playlist.playlist_id}}'>
+                <td ><p>{{ subscribed_playlist.playlist_title }}</p></td>
+                <td ><p>{{ subscribed_playlist.description }}</p></td>
+                <input type="hidden" name="playlist_id" value="{{subscribed_playlist.playlist_id}}">
+                <td><button type="submit" id="unsub" class="btn btn-danger btn-xs" name="unsub">Unsubscribe</button></td>
+              </tr>
+            </form>
+          </tbody>
+          {% endfor %}
+        </table>
+        </div>
+    </div>
+    <script src="js/playlist_row.js"></script>
+
+
+    <div class="home">
+      <a href="index.php">
+      <img src="views/img/unitube.png" alt="logo"></a>
+    </div>
+    <!-- Pop up form for uploading file -->
+    <div class="form-popup" id="uploadForm">
+      <form action="uploadFile.php" method="POST" class="form-container" enctype="multipart/form-data">
+            <ul>
+              <li>
+                <button type="button" class="btn btn-danger" onclick="closeUploadForm()">Close</button>
+                <h2>Upload File</h2> <br>
+              </li>
+              <li>
+                <label for="name">Video Title:</label>
+                <!-- Any number of names (at least two), with at least two letters in each -->
+                <input  title="Max 20 characters" maxlength="20" name="title" id="title" placeholder="Some Title" required="" type="text" >
+              </li>
+              <li>
+                <label for="email">Course Subject: </label>
+                <input pattern="^[A-Z]{3}\d{4}$" name="emne" id="emne" placeholder="IMT0101" required="" type="text" >
+                <span class="form_hint">Proper format "IMT2291"</span>
+              </li>
+              <li>
+                <label for="message">Video Description:</label>
+                <textarea minlength="2" maxlength="1024" title="Type between 20 and 1024 characters" name="descr" cols="30" rows="9" id="descr" required=""></textarea>
+              </li>
+              <li>
+                <label for="pickFile">Select File</label><input type="file" name="fileToUpload" id="pickFile"><br>
+              </li>
+            </ul>
+    
+        <button type="submit" class="btn-primary">Upload</button>
+
+      </form>
+    </div>
+    <script src="js/popup-form.js"></script>
+
+     <!-- Pop up form for creating playlist -->
+    <div class="form-popup" id="playlistForm">
+      <form action="" method="POST" class="form-container">
+        <button type="button" class="btn btn-danger" onclick="closePlaylistForm()">Close</button>
+        <h1>Create Playlist</h1>
+          {% if userhasvideos == true %}
+              <input type="text" name="playlist_name" id="playlist_name" placeholder="Name of Playlist" required="">
+              <textarea minlength="2" placeholder="Playlist description" maxlength="1024" title="Type between 2 and 1024 characters" name="playlist_description" cols="30" rows="5" id="playlist_description" required=""></textarea>
+              {% for video in videos %}
+              <div class="video">
+                <div class="videoinfo">
+                <h4>{{ video.title }} </h4>
+                <i>{{ video.emne }}</i> <br>
+                </div>
+                  <div class ="image-container">              
+                    <label class="image-checkbox">
+                      <img class="img-responsive" src="getThumbnail.php?id={{video.video_id}}" />
+                      <input id="img_check" type="checkbox" name="checkbox[]" value="{{video.video_id}}" />
+                      <div id="index:{{video.video_id}}" class="centered"></div>
+                      <i class="fa fa-check hidden"></i>
+                    </label>
+                  </div> 
+              </div>
+              {% endfor %}
+          {% else %}
+          <p>You have no videos. No point in creating empty playlist, is it? xD</p>
+          {% endif %}
+
+        <button type="submit" class="btn-primary" onclick="submitPlaylist()">Create</button>
+      </form>
+    </div>
+    <div class="form-popup" id="editForm">
+        <form action="teacher.php" method="POST" class="form-container">
+          <ul>
+            <li>
+              <button type="button" class="btn btn-danger" onclick="closeEditForm()">Close</button>
+              <h2>Edit Video<i></i></h2> <br>
+            </li>
+            <li>
+              <label for="name">New Title:</label>
+              <!-- Any number of names (at least two), with at least two letters in each -->
+              <input  title="Max 20 characters" maxlength="20" name="newTitle" id="title" placeholder="{{ video.title }}"  type="text" >
+            </li>
+            <li>
+              <label for="email">New Subject: </label>
+              <input pattern="^[A-Z]{3}\d{4}$" name="newSubject" id="emne" placeholder="{{ video.emne }}" type="text" >
+              <span class="form_hint">Proper format "IMT2291"</span>
+            </li>
+            <li>
+              <label for="message">New Description:</label>
+              <textarea minlength="2" maxlength="1024" title="Type between 20 and 1024 characters" placeholder="{{ video.description }}" name="newDescr" cols="30" rows="9" id="descr"></textarea>
+            </li>
+          </ul>
+          <input type="hidden" name="editVideo_id">
+          <button type="submit" class="btn btn-primary" name="editVideo">Edit</button>
+          </form>
+        </div> 
+        <div class="form-popup" id="playlistEditForm">
+            <form action="" method="POST" class="form-container">
+              <ul>
+                <li>
+                  <button type="button" class="btn btn-danger" onclick="closePlaylistEditForm()">Close</button>
+                  <h2>Edit Playlist<i></i></h2> <br>
+                </li>
+                <li>
+                  <label for="name">New Title:</label>
+                  <!-- Any number of names (at least two), with at least two letters in each -->
+                  <input  title="Max 20 characters" maxlength="20" name="newPlaylistTitle" id="newPlaylistTitle"  type="text" >
+                </li>
+                <li>
+                  <label for="message">New Description:</label>
+                  <textarea minlength="2" maxlength="1024" title="Type between 20 and 1024 characters"  name="newPlaylistDescr" cols="30" rows="9" id="newPlaylistDescr"></textarea>
+                </li>
+              </ul>
+              <div class="video-container">
+                {% for video in videos %}
+                <div class="video">
+                  <div class="videoinfo">
+                  <h4>{{ video.title }} </h4>
+                  <i>{{ video.emne }}</i> <br>
+                  </div>
+                    <div class ="image-container">              
+                      <label class="image-checkbox">
+                        <img class="img-responsive" src="getThumbnail.php?id={{video.video_id}}" />
+                        <input id="img_check" type="checkbox" name="checkbox[]" value="{{video.video_id}}" />
+                        <div id="playlistindex:{{video.video_id}}" class="centered"> </div>
+                        <i class="fa fa-check hidden"></i>
+                      </label>
+                    </div> 
+                </div>
+                {% endfor %}
+              </div>
+              <input type="hidden" id="editPlaylist_id" name="editPlaylist_id">
+              <button type="submit" class="btn-primary" onclick="editPlaylist()">Edit</button>
+            </form>
+         </div>              
+    <script src="js/popup-form.js"></script>
+    <script src="js/image-check.js"></script>
+	</body>
+</html>
+

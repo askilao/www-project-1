@@ -1,0 +1,460 @@
+@media (min-width: 300px) and (max-width: 800px) {
+	.container {
+		overflow-y: auto;
+		background-image: linear-gradient(to bottom right, red, yellow);
+		display: grid;
+		width: 100vw;
+		height: 100vh;
+		grid-template-columns:  1fr 10%;
+		grid-template-rows: 15% 10% 1fr 1fr;
+		grid-gap: 5px;
+		grid-template-areas:
+				"title user"
+				"search search"
+				"navsidebar navsidebar"
+				"playlist playlist"
+
+	}
+	.user {
+		border: 1px solid black;
+		grid-area: user;
+		grid-column-start: 3
+		grid-column-end: end;
+		grid-row-start: row1-start
+		grid-row-end: row1-end;
+		padding-left: 5px;
+		padding-top: 20px;
+	}
+	.title {
+		border: 1px dashed red;
+		grid-area: title;
+		grid-column-start: 1;
+		grid-column-end: 3;
+		grid-row-start: row1-start
+		grid-row-end: row1-end;
+
+	}
+	.search {
+		border: 1px dashed black;
+		grid-area: search;
+		grid-column-start: 1;
+		grid-column-end: end;
+		grid-row-start: row1-end
+		grid-row-end: row2-start;
+
+	}
+	.navsidebar {
+		border: 1px dashed black;
+		grid-area: navsidebar;
+		grid-column-start: 1;
+		grid-column-end: end;
+		grid-row-start: row3-start;
+		grid-row-end: row3-end;
+	}
+	.playlist {
+		border: 1px dashed black;
+		grid-area: playlist;
+		grid-column-start: 1;
+		grid-column-end: end;
+		grid-row-start: row2-end;
+		grid-row-end: last-line;
+	}
+
+	#searchbar {
+		padding-top: 5px;
+		width: 75%;
+		display:inline-block
+	}
+	#searchbar {
+		display:inline-block
+	}
+
+	/* If you like the images to be fluid (responsible to the parent element): */
+	.img-grid {
+		overflow:auto
+		margin-left: 10px;
+		grid-column-start: 2;
+		grid-column-end: end;
+		grid-row-start: 1;
+		grid-row-end: 3;
+		display: grid;
+		grid-template-columns: repeat(10, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+	}
+	.home img {
+	    width: 0px;
+	    height: 0px;
+
+	}
+	.allvideos {
+		display: none;
+	}
+}
+
+@media (min-width: 900px) {
+	.container {
+		overflow-y: auto;
+		background-color: #f2f2f2;
+		display: grid;
+		width: 100vw;
+		height: 100vh;
+		grid-template-columns: 150px 1fr 150px;
+		grid-template-rows: 15% 1fr 1fr;
+		grid-gap: 10px;
+		grid-template-areas:
+				"home title user"
+				"navsidebar myvideos myvideos"
+				"navsidebar playlist playlist"
+
+	}
+	.home {
+		border: 1px solid black;
+		border-radius: 10px;
+		background-color: white;
+		grid-area: home;
+		grid-column-start: 1
+		grid-column-end: 2;
+		grid-row-start: row1-start
+		grid-row-end: row1-end;
+		padding-left: 5px;
+		padding-top: 20px;
+	}
+	.user {
+		border: 1px solid black;
+		border-radius: 25px;
+		background-color: white;
+		grid-area: user;
+		grid-column-start: 3
+		grid-column-end: end;
+		grid-row-start: row1-start
+		grid-row-end: row1-end;
+		padding-top: 20px;
+		text-align: center;
+	}
+	.title {
+		border: 1px solid black;
+		border-radius: 25px;
+		background-color: white;
+		grid-area: title;
+		grid-column-start: 2;
+		grid-column-end: 3;
+		grid-row-start: row1-start
+		grid-row-end: row1-end;
+		text-align:center;
+	}
+	.title h1 {
+		text-align: center;
+		padding-bottom: 30px;
+	}
+
+	.navsidebar {
+		border: 1px solid black;
+		border-radius: 10px;
+		background-color: white;
+		grid-area: navsidebar;
+		grid-column-start: 1;
+		grid-column-end: 2;
+		grid-row-start: 2;
+		grid-row-end: last-line;
+	}
+	.navsidebar h4 {
+		padding-left: 10px;
+		text-align: center;
+	}
+	.navsidebar p {
+		padding-left: 10px;
+	}
+	.navsidebar .btn-primary {
+		margin-bottom: 5px;
+		margin-left: 7px;
+		display: block;
+		width: 90%;
+	}
+	.navsidebar .btn-danger {
+		margin-bottom: 5px;
+		margin-left: 7px;
+		display: block;
+		width: 90%;
+	}
+	.myvideos {
+		border: 1px solid black;
+		overflow-y: auto;
+		border-radius: 25px;
+		background-color: white;
+		grid-area: myvideos;
+		grid-column-start: 2;
+		grid-column-end: end;
+		grid-row-start: 2;
+		grid-row-end: 3;
+	}
+	.myvideos h4 {
+		padding-left: 10px;
+	}
+	.myvideos .dropdown {
+		position: relative;
+		display: inline-block;
+		cursor: pointer;
+		float: right;
+		font-style: italic;
+
+	}
+	.myvideos .dropdown-content {
+	  display: none;
+	  position: absolute;
+	  background-color: #f9f9f9;
+	  width: 70px;
+	  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	  padding: 2px 2px;
+	  z-index: 1;
+	}
+	.myvideos .dropdown:hover .dropdown-content {
+	  display: block;
+	  
+	}
+	#deleteVideo {
+		display: block;
+		width: 90%;
+	}
+	.myvideos .dropdown .dropdown-content .btn-primary {
+		display: block;
+		width: 90%;
+	}
+
+	}
+	.playlist {
+		border: 1px solid black;
+		overflow-y: auto;
+		border-radius: 25px;
+		background-color: white;
+		grid-area: playlist;
+		grid-column-start: 2;
+		grid-column-end: end;
+		grid-row-start: 3;
+		grid-row-end: last-line;
+		display: grid;
+		grid-gap: 10px;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-areas: 
+					"my_playlists subscribed_playlists"
+	}
+	.my_playlists {
+		grid-area: my_playlists;
+	}
+	.subscribed_playlists {
+		grid-area: subscribed_playlists;
+	}
+	.playlist h4 {
+		padding-left: 10px;
+	}
+
+
+	#searchbar {
+		padding-top: 5px;
+		
+		width: 50%;
+		display:inline-block
+	}
+	/* If you like the images to be fluid (responsible to the parent element): */
+	.img-grid {
+		overflow:auto
+		margin-left: 10px;
+		grid-column-start: 2;
+		grid-column-end: end;
+		grid-row-start: 1;
+		grid-row-end: 3;
+		display: grid;
+		grid-template-columns: repeat(10, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+	}
+	.home img {
+		margin-left: 10px;
+	    width: 100px;
+	    height: 100px;
+
+	}
+	.video {
+		margin-left: 10px;
+	}
+
+	.video .image-container {
+		  position: relative;
+		  text-align: center;
+		  color: white;
+	}
+	.video .image-container .centered {
+		  position: absolute;
+		  font-size: 20px;
+		  color: black;
+		  top: 50%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+		}
+
+
+	.playlist .clickable-row {
+	cursor: pointer;
+	}
+
+
+{box-sizing: border-box;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  width: 20%;
+  height: 90%;
+  bottom: 1;
+  left: 180px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  height: 90%;
+  padding: 10px;
+  background-color: white;
+  overflow-y: auto;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+.form-container .img-responsive {
+  cursor: pointer;
+  grid-area: img-responsive;
+}
+#img_check {
+	display: none;
+}
+.form-container .video {
+	display: grid;
+	margin-bottom: 10px;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-areas: 
+				"videoinfo img-responsive"
+}
+.form-container .videoinfo {
+	grid-area: videoinfo;
+}
+
+
+
+/* Set a style for the submit/login button */
+.form-container .btn-primary {
+  background-color: #1a8cff;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  position: absolute;
+  right:    0;
+  bottom:   0;
+}
+.btn-primary:hover {
+  background-color: #004080;
+}
+.btn-secondary:hover {
+  background-color: #a6a6a6;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .btn-danger {
+  background-color: red;
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+}
+.btn-danger:hover {
+  background-color: #cc0000;
+}
+
+/* Add some hover effects to buttons */
+.check
+{
+    opacity:0.2;
+	color:#996;
+	border: 3px solid green;
+	
+}
+
+.form-container ul {
+  width: auto;
+  list-style-type: none;
+  list-style-position: outside;
+  margin: 0px;
+  padding: 0px;
+}
+
+.form-container li {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+
+.uploadFile input:focus, .uploadFile textarea:focus {
+  background: #fff;
+  border: 1px solid #555;
+  box-shadow: 0 0 3px #aaa;
+}
+.form_hint {
+  background: #d45252;
+  border-radius: 3px 3px 3px 3px;
+  color: white;
+  margin-left: 8px;
+  padding: 1px 6px;
+  z-index: 999;
+  /* hints stay above all other elements */
+  position: absolute;
+  /* allows proper formatting if hint is two lines */
+  display: none;
+  /* Initially hidden */
+}
+
+
+.form-container input:focus+.form_hint {
+  display: inline;
+}
+
+.form-container input:required:valid+.form_hint {
+  /* Hide hint when valid */
+  display: none;
+}
+
+/* ------------- Exisiting code below ---------- */
+
+
+/* Add asterix showing required fields */
+
+
+.form-container input:focus:invalid, .form-container textarea:focus:invalid {
+  /* when a field is considered invalid by the browser */
+  background: #fff url(../images/invalid.png) no-repeat 98% center;
+  box-shadow: 0 0 5px #d45252;
+  border-color: #b03535
+}
+
+.form-container input:required:valid, .form-container textarea:required:valid {
+  /* when a field is considered valid by the browser */
+  background: #fff url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+ELCggsMBhauUgAAAAmaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QIG9uIGEgTWFjleRfWwAAAoNJREFUOMuF0stLlGEUx/Hved5xykyKhMwszDArokbCgsgui7y9RIa1qCCCLhBEhAqJUhEuZkrMovoDXEQFhWThtTZFUWaIFmgXKqMLtiivjIy+73taOEmp1Fk+nM9zzoGfAGy6fYi4pfNpWhsi/0XpaomxioAcMZIMgKffFO7rmHe5MfNcu/3qFM7gCC0bLyCbbh1kbmCRuZde4dkd5XViyQ7+Ueppc0MgmFfwqUJ+tn5UyesopSnjPPbL8h4RSQEUkMlQEEa8iM40flHV3oY1wSQA05RxHrujrPZ/eMgNU7xotyT55ynCAruzrBFA8ttKV5qZvq5/4X5nmKLFuyhMyEKBQ2+r9Pton2jEXWvEb52Y6J2Cod8Z5tjCAgoTsvBQBEjyzxNFMTFWkREh+zdw1CXsRSY+GHDDHE6y2TN/Kx6KQTjdU0Pb4BsMBoTNBmQJwJi6rJi1mKtpxwl7EYbcMPsTt3EgMRuN4jM9NTwb7MZvYqIrSooPUA9lVVwK1UuPAlCZeoSnQ10cWWCjKIJQ8ekaDwdeEW/F/nWmD9UPRmRZnzM8nhmUzPh0MuPTJ3Do800e9Lczx4pD0T9CoR+Nwn2A3shP9nWHMAgabROEqi+3afzROhUDqjw03qhzCcASo33OEPu6QwiCAFe+3uHujyfM8c2ejBXAG3WqBcDuKLsultkLqKOupMUmsz5+OTXfW5hlZkxJMyDqenUNGaGdkvu0hOYNF7A7y7vFyIrxzVTG1MUvvmkxnvbUB4KpAEY92N51WhoCwZXqejcAEWQ6THRybX0gmFrw7qzkPCmZmr7c5yfTrBm+EhG2AGnR5/eqPHJHnYvN6ypfA+Q8LqYlq5pf3dsOoHQJd2wAAAAASUVORK5CYII=) no-repeat 98% center;
+  box-shadow: 0 0 5px #5cd053;
+  border-color: #28921f;
+}
+
+

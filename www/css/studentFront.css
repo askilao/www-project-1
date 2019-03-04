@@ -1,0 +1,139 @@
+
+	.container {
+		overflow-y: auto;
+		background-color: #f2f2f2;
+		display: grid;
+		width: 100vw;
+		height: 100vh;
+		grid-template-columns: 150px 1fr 200px;
+		grid-template-rows: 15% 1fr;
+		grid-gap: 10px;
+		grid-template-areas:
+				"home title user"
+				"navsidebar playlist playlist"
+
+	}
+	.home {
+		border: 1px solid black;
+		border-radius: 10px;
+		background-color: white;
+		grid-area: home;
+		grid-column-start: 1
+		grid-column-end: 2;
+		grid-row-start: row1-start
+		grid-row-end: row1-end;
+		padding-left: 5px;
+
+	}
+	.user {
+		border: 1px solid black;
+		border-radius: 10px;
+		background-color: white;
+		grid-area: user;
+		grid-column-start: 3
+		grid-column-end: end;
+		grid-row-start: row1-start
+		grid-row-end: row1-end;
+		padding-top: 20px;
+		text-align: center;
+		display: -webkit-flex;
+		-webkit-flex-wrap: wrap;
+	}
+	.title {
+		border: 1px solid black;
+		border-radius: 10px;
+		background-color: white;
+		grid-area: title;
+		grid-column-start: 2;
+		grid-column-end: 3;
+		grid-row-start: row1-start
+		grid-row-end: row1-end;
+		text-align:center;
+	}
+	.title h1 {
+		text-align: center;
+		padding-bottom: 30px;
+	}
+
+	.navsidebar {
+		border: 1px solid black;
+		border-radius: 10px;
+		background-color: white;
+		grid-area: navsidebar;
+		grid-column-start: 1;
+		grid-column-end: 2;
+		grid-row-start: 2;
+		grid-row-end: last-line;
+	}
+	.navsidebar h4 {
+		padding-left: 10px;
+	}
+	.navsidebar p {
+		padding-left: 10px;
+	}
+	.playlist {
+		border: 1px solid black;
+		border-radius: 10px;
+		background-color: white;
+		grid-area: playlist;
+		grid-column-start: 2;
+		grid-column-end: end;
+		grid-row-start: 2;
+		grid-row-end: last-line;
+		overflow-y: auto;
+	}
+	.playlist h4, h3, p {
+		padding-left: 10px;
+	}
+	.playlist h3 {
+		 display: inline-block;
+	}
+
+	.playlist .btn {
+		 margin-bottom: 5px;
+		 margin-left: 10px;
+		 display: inline-block;
+	}
+	.playlist .btn-danger {
+		 margin-bottom: 5px;
+		 margin-right: 10px;
+		 float: right;
+	}
+	.description {
+		margin-left: 10px;
+		margin-right: 10px;
+		border-bottom: 5px solid #f2f2f2;
+		
+	}
+
+
+
+	#searchbar {
+		padding-top: 5px;
+		width: 50%;
+		display:inline-block
+	}
+	/* If you like the images to be fluid (responsible to the parent element): */
+	.img-grid {
+		margin-left: 10px;
+		grid-column-start: 2;
+		grid-column-end: end;
+		grid-row-start: 1;
+		grid-row-end: 3;
+		display: -webkit-flex;
+		-webkit-flex-wrap: wrap;
+		border-bottom: 5px solid #d9d9d9;
+		
+		
+	}
+	.home img {
+		margin-left: 10px;
+	    width: 100px;
+	    height: 100px;
+
+	}
+	.video {
+		margin-left: 10px;
+		margin-bottom: 10px;
+		
+	}

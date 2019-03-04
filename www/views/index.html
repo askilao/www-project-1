@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <style>
+        .col-sm-4 {
+            padding-top: 150px;
+            margin: auto;
+        }
+
+        .header img {
+            float: left;
+            width: 100px;
+            height: 100px;
+
+        }
+
+        .header h1 {
+            position: relative;
+            top: 18px;
+            left: 10px;
+        }
+
+}
+    </style>
+</head>
+<body>
+<div class="row">
+
+    <aside class="col-sm-4">
+        <div class="status">
+            <h3>{{ status }}</h3>
+        </div>
+
+<div class="card">
+    <div class="header">
+        <img src="views/img/unitube.png" alt="logo" />
+        <h1>UniTube</h1>
+    </div>
+<article class="card-body">
+<a href="signup.php" class="float-right btn btn-outline-primary">Sign up</a>
+<h4 class="card-title mb-4 mt-1">Sign in</h4>
+     <form id="login" method="post" action="index.php">
+        <div class="form-group">
+            <label>Your email</label>
+            <input name="mail" class="form-control" placeholder="Email" type="email" required>
+        </div> <!-- form-group// -->
+        <div class="form-group">
+            <a class="float-right" href="#">Forgot?</a>
+            <label>Your password</label>
+            <input name="password" class="form-control" placeholder="******" type="password" required>
+        </div> <!-- form-group// --> 
+        <div class="form-group"> 
+            <div class="checkbox">
+                <label> <input name="rememberMe" type="checkbox"> Remember Me </label>
+            </div> <!-- checkbox .// -->
+        </div> <!-- form-group// -->  
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+        </div> <!-- form-group// -->                                                           
+    </form>
+</article>
+</div> <!-- card.// -->
+</div>
+    </aside> <!-- col.// -->
+    <aside class="col-sm-4">
+</body>
+</html>

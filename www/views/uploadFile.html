@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- HTML and CSS is taken from http://folk.ntnu.no/oeivindk/imt2291/HTML5_Forms/v9/ -->
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Upload File</title>
+  <link rel="stylesheet" media="screen" href="css/uploadFiles.css">
+</head>
+
+<body>
+  <form class="uploadFile" action="uploadFile.php" method="post" name="uploadFile" enctype="multipart/form-data">
+
+    <ul>
+      <li>
+        <h2>Upload File</h2> <br>
+        <a href="index.php">Home</a>
+        <span class="required_notification">* Denotes Required Field</span>
+      </li>
+      <li>
+        <label for="name">Video Title:</label>
+        <!-- Any number of names (at least two), with at least two letters in each -->
+        <input  title="Max 20 characters" maxlength="20" name="title" id="title" placeholder="Some Title" required="" type="text">
+      </li>
+      <li>
+        <label for="email">Course Subject:</label>
+        <input pattern="^[A-Z]{3}\d{4}$" name="emne" id="emne" placeholder="IMT0101" required="" type="text">
+        <span class="form_hint">Proper format "IMT2291"</span>
+      </li>
+      <li>
+        <label for="message">Video Description:</label>
+        <textarea minlength="2" maxlength="1024" title="Type between 20 and 1024 characters" name="descr" cols="40" rows="6" id="descr" required=""></textarea>
+      </li>
+      <li>
+        <label for="pickFile">Select File</label><input type="file" name="fileToUpload" id="pickFile"><br>
+      </li>
+      <li>
+        <button class="submit" type="submit">Upload</button>
+      </li>
+    </ul>
+  </form>
+
+
+
+</body></html>

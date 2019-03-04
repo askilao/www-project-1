@@ -1,0 +1,17 @@
+from php:7.3-apache
+RUN docker-php-ext-install pdo_mysql \
+ && docker-php-ext-enable pdo_mysql
+
+RUN apt update && apt install -y ffmpeg libpng-dev
+
+RUN docker-php-ext-install mbstring
+
+RUN docker-php-ext-install gd
+
+
+COPY phpconf.ini $PHP_INI_DIR/conf.d/
+
+RUN mkdir /var/www/html/uploadedFiles
+
+RUN chmod  777 /var/www/html/uploadedFiles
+

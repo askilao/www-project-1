@@ -1,0 +1,92 @@
+.container {
+	display: grid;
+	width: 100vw;
+	height: 100vh;
+	grid-template-columns:  10% 1fr 1fr 10%;
+	grid-template-rows: 20% 1fr;
+	grid-gap: 5px;
+	grid-template-areas:
+			"home search search user"
+			"video_result video_result playlist_result playlist_result"
+			"video_result video_result playlist_result playlist_result"
+
+}
+.home {
+	border: 1px dashed black;
+	grid-area: home;
+	grid-column-start: 1
+	grid-column-end: 2;
+	grid-row-start: row1-start
+	grid-row-end: row1-end;
+	padding-left: 5px;
+	padding-top: 20px;
+}
+
+.home img {
+	margin-left: 10px;
+    width: 100px;
+    height: 100px;
+
+}
+
+.search {
+	border: 1px dashed black;
+	grid-area: search;
+	grid-column-start: 2
+	grid-column-end: 4;
+	grid-row-start: row1-start
+	grid-row-end: row1-end;
+	text-align: center;
+	position: relative;
+
+}
+.search .searchbar {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	margin-bottom: 10px;
+}
+.search p {
+	color: red;
+}
+.search button {
+	display: inline-block;
+	position: absolute;
+
+
+}
+.search input {
+	width: 50%;
+	display: inline-block;
+
+}
+
+.user {
+	border: 1px dashed black;
+	grid-area: user;
+	grid-column-start: 4
+	grid-column-end: end;
+	grid-row-start: row1-start
+	grid-row-end: row1-end;
+}
+.video_result {
+	overflow-y: auto;
+	border: 1px dashed black;
+	grid-area: video_result;
+	grid-column-start: 1
+	grid-column-end: 2;
+	grid-row-start: row2-start
+	grid-row-end: last-line;
+}
+.playlist_result {
+	overflow-y: auto;
+	border: 1px dashed black;
+	grid-area: playlist_result;
+	grid-column-start: 2
+	grid-column-end: 4;
+	grid-row-start: row2-start
+	grid-row-end: last-line;
+}
+.playlist_result .clickable-row {
+	cursor: pointer;
+}
