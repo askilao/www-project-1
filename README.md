@@ -5,10 +5,6 @@
 Askil A. Olsen,
 Anders G. Gustad & Espen Skuggerud
 
-# Rapporten #
-Rapporten til prosjektet legger dere i Wikien til deres egen fork av repositoriet.
-
-*Rapporten har blitt lagt i wikien*
 
 # Start docker environment #
 **All docker related files is in docker/ folder**
